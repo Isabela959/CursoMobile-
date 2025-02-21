@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-void main() {
-  runApp(const MyApp());
+// flutter create --platforms=android --empty ola_mundo_dependências
+
+void main() { //método necessário para rodar aplicação
+  MyApp();
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget { //classe inicial
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text('Exemplo com Fluttertoast')),
+    return MaterialApp( //material app (material base de desenvolvimento)
+      home: Scaffold( //página inicial usando uma tela padrão
+        appBar: AppBar(title: Text("App Olá Mundo")), 
         body: Center(
           child: ElevatedButton(
             onPressed: () {
