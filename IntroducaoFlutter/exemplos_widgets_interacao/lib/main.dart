@@ -1,14 +1,8 @@
+import 'package:exemplos_widgets_interacao/widgets_interacao.dart';
 import 'package:flutter/material.dart';
 
-void main(){
-  runApp (MyApp());
-}
 
-class MyApp extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return MaterialApp(
-      home:(),
-    );
-  }
+
+void main(){
+  runApp(MaterialApp(debugShowCheckedModeBanner: false,home: MyApp(),));
 }
