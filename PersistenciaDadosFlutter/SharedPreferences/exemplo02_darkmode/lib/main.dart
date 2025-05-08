@@ -5,7 +5,7 @@ void main() {
   runApp(
     MaterialApp(
       theme: ThemeData(
-        brightness: Brightness.light, // define como tema claro inicial
+        brightness: Brightness.light, // define como inicial tema claro 
       ),
       darkTheme: ThemeData(brightness: Brightness.dark),
       home: HomePage(),
