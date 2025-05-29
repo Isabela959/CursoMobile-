@@ -14,7 +14,7 @@ class Consulta{
     required this.petId,
     required this.dataHora,
     required this.tipoServico,
-    this.observacao // não é obrigatório
+    required this.observacao 
   });
 
   //toMap -> obj -> BD
@@ -22,7 +22,7 @@ class Consulta{
     return{
       "id": id,
       "pet_id": petId,
-      "data_hora": dataHora.toIso8601String(),
+      "data_hora": dataHora.toIso8601String(), //padrão internacional de date e hora 
       "tipo_servico": tipoServico,
       "observacao":observacao
     };
@@ -35,7 +35,7 @@ class Consulta{
       petId: map["pet_id"] as int,
       dataHora: DateTime.parse(map["data_hora"] as String), //converter string para DateTime
       tipoServico: map["tipo_servico"] as String,
-      observacao: map["observacao"] as String?); // pode ser nulo   
+      observacao: map["observacao"] as String?);  
   }
 
   // método formatar data e hora em formato Brasil

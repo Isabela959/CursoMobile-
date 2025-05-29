@@ -2,7 +2,7 @@
 
 class Pet{
   // final = ao ser criada, só troca de valor uma única vez
-  final int? id; //permite ser nulo, pois o id é gerado automaticamente
+  final int? id; //permite ser nulo, pois o id é gerado automaticamente = ID AUTO INCREMENT
   final String nome;
   final String raca;
   final String nomeDono;
