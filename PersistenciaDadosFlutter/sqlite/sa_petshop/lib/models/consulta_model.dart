@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 class Consulta{
   //atributos
   final int? id; // permite ser nulo, pois o id é gerado automaticamente
-  final int petId;
+  final int petId; //chave estrangeira
   final DateTime dataHora; // obj é dateTime - BD é string 
   final String tipoServico;
   final String? observacao;

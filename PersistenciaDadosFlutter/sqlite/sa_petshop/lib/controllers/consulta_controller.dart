@@ -1,4 +1,5 @@
-import '../services/petshop_dbhelper.dart';
+import 'package:sa_petshop/models/consulta_model.dart';
+import 'package:sa_petshop/services/petshop_dbhelper.dart';
 
 class ConsultaController {
   final _dbHelper = PetShopDBHelper();
@@ -10,7 +11,7 @@ class ConsultaController {
   }
 
   Future<List<Consulta>> readConsultaForPet(int petId) async{
-    return -_dbHelper.getConsultasForPet(petId);
+    return _dbHelper.getConsultasForPet(petId);
   }
 
 // retorna  o id da consulta que foi deletada

@@ -1,4 +1,4 @@
-import '../services/pet_dbhelper.dart';
+import 'package:sa_petshop/services/petshop_dbhelper.dart';
 import '../models/pet_model.dart';
 
 class PetController {
@@ -6,7 +6,7 @@ class PetController {
 
   //métodos controllers
 
-  Future<int> createPe(Pet pet) async{
+  Future<int> createPet(Pet pet) async{
     return _dbHelper.insertPet(pet);
   }
 
