@@ -32,9 +32,9 @@ class _CadastroPetScreenState extends State<CadastroPetScreen> {
         raca: _raca, 
         nomeDono: _nomeDono, 
         telefoneDono: _telefoneDono);
-      //marda as informações para o DB
+      //manda as informações para o DB
       await _controllerPet.createPet(newPet);
-      //volta Para a Tela Inicial
+      //volta para a Tela Inicial
       Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen())); 
 
     }

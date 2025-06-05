@@ -89,7 +89,7 @@ class PetShopDBHelper{ // fazer conexão singleton
       if (maps.isEmpty) {
         return null;
       }else{
-        Pet.fromMap(maps.first);
+        return Pet.fromMap(maps.first);
       }
     }
 

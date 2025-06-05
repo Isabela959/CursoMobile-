@@ -114,6 +114,9 @@ class _DetalhePetScreenState extends State<DetalhePetScreen>{
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Consulta Deletada com Sucesso"))
         );
+        setState(() {
+          
+        });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Exception: $e"))
