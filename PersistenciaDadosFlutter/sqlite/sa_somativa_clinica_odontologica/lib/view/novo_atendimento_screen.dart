@@ -111,83 +111,114 @@ class _NovoAtendimentoScreenState extends State<NovoAtendimentoScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Novo Atendimento"),
+        title: Text("Clínica Odontológica"),
         backgroundColor: Color(0xFF6D83FF),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: _formKey, // Formulário com validação
-          child: ListView(
-            children: [
-              // Campo de procedimento
-              TextFormField(
-                decoration: InputDecoration(labelText: "Procedimento"),
-                validator: (value) =>
-                    value!.isEmpty ? "Campo obrigatório" : null,
-                onSaved: (newValue) => _procedimento = newValue!,
-              ),
-              SizedBox(height: 10),
-
-              // Campo de dentes envolvidos
-              TextFormField(
-                decoration: InputDecoration(labelText: "Dentes Envolvidos"),
-                validator: (value) =>
-                    value!.isEmpty ? "Campo obrigatório" : null,
-                onSaved: (newValue) => _dentesEnvolvidos = newValue!,
-              ),
-              SizedBox(height: 10),
-
-              // Seleção de data
-              Row(
-                children: [
-                  Text("Data: ${dataFormatada.format(_dataSelecionada)}"),
-                  TextButton(
-                    onPressed: () => _selecionarData(context),
-                    child: Text("Selecionar Data"),
-                  )
-                ],
-              ),
-
-              // Seleção de hora
-              Row(
-                children: [
-                  Text(
-                    "Hora: ${horaFormatada.format(DateTime(0, 0, 0, _horaSelecionada.hour, _horaSelecionada.minute))}",
+      body: Container(
+        color: Colors.blue[50],
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              children: [
+                Text(
+                  "Novo Atendimento",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue[700],
                   ),
-                  TextButton(
-                    onPressed: () => _selecionarHora(context),
-                    child: Text("Selecionar Hora"),
-                  )
-                ],
-              ),
-              SizedBox(height: 10),
-
-              // Campo de observações (opcional)
-              TextFormField(
-                decoration: InputDecoration(labelText: "Observações"),
-                onSaved: (newValue) => _observacoes = newValue ?? "",
-              ),
-              SizedBox(height: 10),
-
-              // Campo de valor
-              TextFormField(
-                decoration: InputDecoration(labelText: "Valor (R\$)"),
-                keyboardType:
-                    TextInputType.numberWithOptions(decimal: true),
-                validator: (value) =>
-                    value!.isEmpty ? "Informe o valor" : null,
-                onSaved: (newValue) =>
-                    _valor = double.tryParse(newValue!) ?? 0.0,
-              ),
-              SizedBox(height: 20),
-
-              // Botão para salvar o atendimento
-              ElevatedButton(
-                onPressed: _salvarAtendimento,
-                child: Text("Salvar Atendimento"),
-              ),
-            ],
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 24),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Procedimento",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) => value!.isEmpty ? "Campo obrigatório" : null,
+                  onSaved: (newValue) => _procedimento = newValue!,
+                ),
+                SizedBox(height: 12),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Dentes Envolvidos",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) => value!.isEmpty ? "Campo obrigatório" : null,
+                  onSaved: (newValue) => _dentesEnvolvidos = newValue!,
+                ),
+                SizedBox(height: 12),
+                Row(
+                  children: [
+                    Text("Data: ${dataFormatada.format(_dataSelecionada)}"),
+                    TextButton(
+                      onPressed: () => _selecionarData(context),
+                      child: Text("Selecionar Data"),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Hora: ${horaFormatada.format(DateTime(0, 0, 0, _horaSelecionada.hour, _horaSelecionada.minute))}",
+                    ),
+                    TextButton(
+                      onPressed: () => _selecionarHora(context),
+                      child: Text("Selecionar Hora"),
+                    )
+                  ],
+                ),
+                SizedBox(height: 12),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Observações",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onSaved: (newValue) => _observacoes = newValue ?? "",
+                ),
+                SizedBox(height: 12),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Valor (R\$)",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  validator: (value) => value!.isEmpty ? "Informe o valor" : null,
+                  onSaved: (newValue) => _valor = double.tryParse(newValue!) ?? 0.0,
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue[700],
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                  ),
+                  onPressed: _salvarAtendimento,
+                  child: Text("Salvar Atendimento"),
+                ),
+              ],
+            ),
           ),
         ),
       ),

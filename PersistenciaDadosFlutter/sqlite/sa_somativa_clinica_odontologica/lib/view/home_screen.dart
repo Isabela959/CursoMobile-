@@ -63,54 +63,88 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Clínica Odontológica - Pacientes"),
-      backgroundColor: Color(0xFF6D83FF),),
-
-      // Corpo da tela: mostra lista ou indicador de carregamento
-      body:
-          _isLoading
-              ? Center(child: CircularProgressIndicator()) // Enquanto carrega
-              : ListView.builder(
-                padding: EdgeInsets.all(16),
-                itemCount: _pacientes.length, // Total de pacientes na lista
-                itemBuilder: (context, index) {
-                  final paciente = _pacientes[index];
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Color(0xFF6D83FF),
-                      child: Icon(Icons.person, color: Colors.white,
-                      ),
-                    ),
-                    title: Text(paciente.nome), // Nome do paciente
-                    subtitle: Text(paciente.telefone), // Telefone do paciente
-                    // Ao tocar: abre a tela de prontuário
-                    onTap:
-                        () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) => ProntuarioPacienteScreen(
-                                  pacienteId: paciente.id!,
-                                ),
-                          ),
-                        ).then(
-                          (_) => _carregarDados(),
-                        ), // Recarrega dados ao voltar
-                    // Ao pressionar e segurar: remove paciente
-                    onLongPress: () => _deletarPaciente(paciente.id!),
-                  );
-                },
+      appBar: AppBar(
+        title: Text("Clínica Odontológica"),
+        backgroundColor: Color(0xFF6D83FF),
+      ),
+      body: Container(
+        color: Colors.blue[50],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
+              child: Text(
+                "Pacientes",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue[700],
+                ),
               ),
-
-      // Botão para adicionar novo paciente
+            ),
+            Expanded(
+              child: _isLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : _pacientes.isEmpty
+                      ? Center(child: Text("Nenhum paciente cadastrado."))
+                      : ListView.builder(
+                          padding: EdgeInsets.all(16),
+                          itemCount: _pacientes.length,
+                          itemBuilder: (context, index) {
+                            final paciente = _pacientes[index];
+                            return Card(
+                              color: Colors.white,
+                              elevation: 1,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              margin: EdgeInsets.symmetric(vertical: 8),
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor: Color(0xFF6D83FF),
+                                  child: Icon(Icons.person, color: Colors.white),
+                                ),
+                                title: Text(
+                                  paciente.nome,
+                                  style: TextStyle(
+                                    color: Colors.blue[900],
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  paciente.telefone,
+                                  style: TextStyle(color: Colors.grey[700]),
+                                ),
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProntuarioPacienteScreen(
+                                      pacienteId: paciente.id!,
+                                    ),
+                                  ),
+                                ).then((_) => _carregarDados()),
+                                onLongPress: () => _deletarPaciente(paciente.id!),
+                              ),
+                            );
+                          },
+                        ),
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed:
-            () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CadastroPacienteScreen()),
-            ).then((_) => _carregarDados()), // Recarrega após cadastrar
+        backgroundColor: Color(0xFF6D83FF),
+        foregroundColor: Colors.white,
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CadastroPacienteScreen()),
+        ).then((_) => _carregarDados()),
         tooltip: "Adicionar novo paciente",
         child: Icon(Icons.add),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
       ),
     );
   }

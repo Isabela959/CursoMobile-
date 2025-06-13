@@ -34,7 +34,7 @@ class _CadastroPacienteScreenState extends State<CadastroPacienteScreen> {
         email: _email, 
         historicoMedico: _historicoMedico);
 
-      await _controllerPaciente.criarPaciente(novoPaciente); // Insere o paciente no banco via controller
+      await _controllerPaciente.criarPaciente(novoPaciente); // Insere o paciente no banco pelo controller
 
       // Navega para a tela inicial após o cadastro
       Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
@@ -44,56 +44,126 @@ class _CadastroPacienteScreenState extends State<CadastroPacienteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Cadastro de Paciente")), // Título da tela
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Form(
-          key: _formKey, // Associa o formulário à chave para controle
-          child: ListView(
-            children: [
-              // Campo para nome completo com validação e salvamento do valor
-              TextFormField(
-                decoration: InputDecoration(labelText: "Nome Completo"),
-                validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
-                onSaved: (value) => _nome = value!, 
-              ),
-              // Campo para CPF
-              TextFormField(
-                decoration: InputDecoration(labelText: "CPF"),
-                validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
-                onSaved: (value) => _cpf = value!, 
-              ),
-              // Campo para data de nascimento
-              TextFormField(
-                decoration: InputDecoration(labelText: "Data de Nascimento"),
-                validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
-                onSaved: (value) => _dataNascimento = value!, 
-              ),
-              // Campo para telefone
-              TextFormField(
-                decoration: InputDecoration(labelText: "Telefone"),
-                validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
-                onSaved: (value) => _telefone = value!, 
-              ),
-              // Campo para email
-              TextFormField(
-                decoration: InputDecoration(labelText: "Email"),
-                validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
-                onSaved: (value) => _email = value!, 
-              ),
-              // Campo para histórico médico
-              TextFormField(
-                decoration: InputDecoration(labelText: "Histórico Médico"),
-                validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
-                onSaved: (value) => _historicoMedico = value!, 
-              ),
-              SizedBox(height: 16),
-              // Botão para salvar os dados e cadastrar o paciente
-              ElevatedButton(
-                onPressed: _salvarPaciente, 
-                child: Text("Cadastrar Paciente"),
-              ),
-            ],
+      appBar: AppBar(title: Text("Clínica Odontológica"), // Título da tela
+      backgroundColor: Color(0xFF6D83FF),), 
+      body: Container(
+        color: Colors.blue[50], // Fundo azul claro
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              children: [
+                Text(
+                  "Cadastro de Paciente",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue[700],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 24),
+                // Campo para nome completo com validação e salvamento do valor
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Nome Completo",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
+                  onSaved: (value) => _nome = value!,
+                ),
+                SizedBox(height: 12),
+                // Campo para CPF
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "CPF",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
+                  onSaved: (value) => _cpf = value!,
+                ),
+                SizedBox(height: 12),
+                // Campo para data de nascimento
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Data de Nascimento",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
+                  onSaved: (value) => _dataNascimento = value!,
+                ),
+                SizedBox(height: 12),
+                // Campo para telefone
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Telefone",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
+                  onSaved: (value) => _telefone = value!,
+                ),
+                SizedBox(height: 12),
+                // Campo para email
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Email",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
+                  onSaved: (value) => _email = value!,
+                ),
+                SizedBox(height: 12),
+                // Campo para histórico médico
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Histórico Médico",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  validator: (value) => value!.isEmpty ? "Campo Obrigatório" : null,
+                  onSaved: (value) => _historicoMedico = value!,
+                ),
+                SizedBox(height: 20),
+                // Botão para salvar os dados e cadastrar o paciente
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue[700],
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                  ),
+                  onPressed: _salvarPaciente,
+                  child: Text("Cadastrar Paciente", style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

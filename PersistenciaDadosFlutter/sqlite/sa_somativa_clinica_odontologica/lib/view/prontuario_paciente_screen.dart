@@ -67,67 +67,122 @@ class _ProntuarioPacienteScreenState extends State<ProntuarioPacienteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Prontuário do Paciente"),
+        title: Text("Clínica Odontológica"),
         backgroundColor: const Color(0xFF6D83FF), // Cor azul personalizada
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator()) // Indicador enquanto carrega
+          ? Center(child: CircularProgressIndicator())
           : _paciente == null
-              ? Center(child: Text("Paciente não encontrado.")) // Caso não ache paciente
-              : Padding(
+              ? Center(child: Text("Paciente não encontrado."))
+              : Container(
+                  color: Colors.blue[50], // Fundo azul claro
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Dados básicos do paciente
-                      Text("Nome: ${_paciente!.nome}", style: TextStyle(fontSize: 20)),
-                      SizedBox(height: 10),
-                      Text("CPF: ${_paciente!.cpf}"),
-                      Text("Nascimento: ${_paciente!.dataNascimento}"),
-                      Text("Telefone: ${_paciente!.telefone}"),
-                      Text("E-mail: ${_paciente!.email}"),
-                      Text("Histórico Médico: ${_paciente!.historicoMedico}"),
-                      Divider(height: 32),
-                      Text("Atendimentos:", style: TextStyle(fontSize: 20)),
-
-                      // Lista de atendimentos ou mensagem se vazio
-                      _atendimentos.isEmpty
-                          ? Center(child: Text("Nenhum atendimento registrado."))
-                          : Expanded(
-                              child: ListView.builder(
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 20),
+                        child: Text(
+                          "Prontuário do Paciente",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue[700],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.blue.withOpacity(0.08),
+                              blurRadius: 8,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _paciente!.nome,
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue[700],
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Text("CPF: ${_paciente!.cpf}", style: TextStyle(fontSize: 16)),
+                            Text("Nascimento: ${_paciente!.dataNascimento}", style: TextStyle(fontSize: 16)),
+                            Text("Telefone: ${_paciente!.telefone}", style: TextStyle(fontSize: 16)),
+                            Text("E-mail: ${_paciente!.email}", style: TextStyle(fontSize: 16)),
+                            Text("Histórico Médico: ${_paciente!.historicoMedico}", style: TextStyle(fontSize: 16)),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 24),
+                      Text("Atendimentos:", style: TextStyle(fontSize: 20, color: Colors.blue[700], fontWeight: FontWeight.bold)),
+                      SizedBox(height: 8),
+                      Expanded(
+                        child: _atendimentos.isEmpty
+                            ? Center(child: Text("Nenhum atendimento registrado."))
+                            : ListView.builder(
                                 itemCount: _atendimentos.length,
                                 itemBuilder: (context, index) {
                                   final atendimento = _atendimentos[index];
                                   return Card(
+                                    color: Colors.white,
+                                    elevation: 1,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
                                     margin: EdgeInsets.symmetric(vertical: 6),
                                     child: ListTile(
-                                      title: Text(atendimento.procedimento),
-                                      subtitle: Text("Data: ${atendimento.data} - Hora: ${atendimento.hora}"),
+                                      title: Text(
+                                        atendimento.procedimento,
+                                        style: TextStyle(
+                                          color: Colors.blue[900],
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        "Data: ${atendimento.data} - Hora: ${atendimento.hora}",
+                                        style: TextStyle(color: Colors.grey[700]),
+                                      ),
                                       trailing: IconButton(
-                                        icon: Icon(Icons.delete, color: Colors.red),
+                                        icon: Icon(Icons.delete, color: Colors.red[400]),
                                         onPressed: () => _deletarAtendimento(atendimento.id!),
                                       ),
                                     ),
                                   );
                                 },
                               ),
-                            ),
-
+                      ),
                       SizedBox(height: 16),
-
-                      // Botão para criar novo atendimento
                       Center(
                         child: ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue[700],
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                          ),
                           onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => NovoAtendimentoScreen(pacienteId: widget.pacienteId),
                               ),
-                            ).then((_) => _carregarDados()); // Recarrega após voltar da tela
+                            ).then((_) => _carregarDados());
                           },
-                          icon: Icon(Icons.note),
-                          label: Text("Novo Atendimento"),
+                          icon: Icon(Icons.note_add),
+                          label: Text("Novo Atendimento", style: TextStyle(fontSize: 16)),
                         ),
                       ),
                     ],
