@@ -1,0 +1,38 @@
+{
+    "usuarios": [
+        {
+            "id": 1,
+            "nome": "João Silva",
+            "email": "joao@email.com"
+        },
+        {
+            "id": 2,
+            "nome": "Maria Santos",
+            "email": "maria@email.com"
+        }
+    ],
+    "livros": [
+        {
+            "id": 1,
+            "titulo": "Guia dos Mochileiros da Galáxia",
+            "autor": "Douglas Noel Adams",
+            "disponivel": false
+        },
+        {
+            "id":2,
+            "titulo": "Memórias Póstumas de Brás Cubas",
+            "autor": "Machado de Assis",
+            "disponivel":true
+        }
+    ],
+    "emprestimos": [
+        {
+            "id": 1,
+            "usuario_id": 1,
+            "livro_id": 1,
+            "data_emprestimo": "2025-08-22",
+            "data_devolucao": "2025-09-01",
+            "devolvido": false
+        }
+    ]
+}
