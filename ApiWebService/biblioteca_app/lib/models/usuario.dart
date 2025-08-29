@@ -9,13 +9,13 @@ class Usuario {
   Usuario({this.id, required this.nome, required this.email});
 
   //métodos 
-  //ToJson
+  //ToJson Obj => Map(Json)
   Map<String,dynamic> toJson() => {
     "id": id,
     "nome": nome,
     "email": email
   };
-  //FromJson
+  //FromJson Json(Map) => Obj
   factory Usuario.fromJson(Map<String,dynamic> json) =>
   Usuario(
     id: json["id"].toString(),

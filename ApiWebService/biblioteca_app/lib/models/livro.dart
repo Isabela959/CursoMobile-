@@ -7,22 +7,23 @@ class Livro {
   final bool disponivel;
 
   //construtor
+  //required = obrigatório
   Livro({this.id, required this.titulo, required this.autor, required this.disponivel});
 
   //métodos 
-  //ToJson
+  //ToJson ou ToMap
   Map<String,dynamic> toJson() => {
     "id": id,
-    "nome": titulo,
-    "email": autor,
+    "titulo": titulo,
+    "autor": autor,
     "disponivel": disponivel
   };
-  //FromJson
+  //FromJson ou FromMap
   factory Livro.fromJson(Map<String,dynamic> json) =>
   Livro(
     id: json["id"].toString(),
     titulo: json["titulo"].toString(),
     autor: json["autor"].toString(),
-    disponivel: json["disponivel"].toString(),
+    disponivel: json["disponivel"] == 1 ? true : false,
   );
 }

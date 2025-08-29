@@ -12,7 +12,7 @@ class Emprestimo {
   Emprestimo({this.id, required this.usuario_id, required this.livro_id, required this.data_emprestimo, required this.data_devolucao, required this.devolvido});
 
   //métodos 
-  //ToJson
+  //ToJson ou ToMap
   Map<String,dynamic> toJson() => {
     "id": id,
     "usuario_id": usuario_id,
@@ -21,7 +21,7 @@ class Emprestimo {
     "data_devolucao": data_devolucao,
     "devolvido": devolvido
   };
-  //FromJson
+  //FromJson ou FromMap
   factory Emprestimo.fromJson(Map<String,dynamic> json) =>
   Emprestimo(
     id: json["id"].toString(),
@@ -29,7 +29,7 @@ class Emprestimo {
     livro_id: json["livro_id"].toString(),
     data_emprestimo: json["data_emprestimo"].toString(),
     data_devolucao: json["data_devolucao"].toString(),
-    devolvido: json["devolvido"].toString(),
+    devolvido: json["devolvido"] == 1 ? true : false,
   );
 }
 
