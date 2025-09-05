@@ -24,6 +24,8 @@ class Livro {
     id: json["id"].toString(),
     titulo: json["titulo"].toString(),
     autor: json["autor"].toString(),
+    //Quando vem do banco, as vezes volta como variável 0 e 1 em vez de true ou false
+    //Ajuste para 
     disponivel: json["disponivel"] == 1 ? true : false,
   );
 }

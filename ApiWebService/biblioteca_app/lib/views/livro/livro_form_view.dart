@@ -33,7 +33,7 @@ class _LivroFormViewState extends State<LivroFormView> {
     }
   }
 
-  // salvar novo usuário
+  // salvar novo livro
   void _save() async {
     if (_formkey.currentState!.validate()) {
       final livro = Livro(
@@ -45,29 +45,6 @@ class _LivroFormViewState extends State<LivroFormView> {
       );
       try {
         await _controller.create(livro);
-        //mensagem de criação com sucesso
-      } catch (e) {
-        //tratar erro
-      }
-      Navigator.pop(context);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => LivroListView()),
-      );
-    }
-  }
-
-  // atualizar usuário existente
-  void _update() async {
-    if (_formkey.currentState!.validate()) {
-      final livro = Livro(
-        id: widget.livro?.id!, //pegar id existente
-        titulo: _tituloField.text.trim(),
-        autor: _autorField.text.trim(),
-        disponivel: _disponivel,
-      );
-      try {
-        await _controller.update(livro);
         //mensagem de criação com sucesso
       } catch (e) {
         //tratar erro
@@ -113,11 +90,13 @@ class _LivroFormViewState extends State<LivroFormView> {
                 ),
                 SizedBox(height: 20,),
                 ElevatedButton(
-                  onPressed: widget.livro == null ? _save : _update, 
-                  child: Text(widget.livro == null ? "Salvar" : "Atualizar"))
-              ],
-            )),
-          ),
+                  onPressed: _save, 
+                  child: Text("Salvar"),
+                )
+            ],
+          )
+        ),
+      ),
     );
   }
 }

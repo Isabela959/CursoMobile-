@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   // base url para conexão
-  static const _baseUrl = "http://10.109.197.8:3012";
+  static const _baseUrl = "http://10.109.197.11:3012";
 
   //métodos Static significa que não precisa criar um objeto para usar o método
   // métodos da classe e não do obj
