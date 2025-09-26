@@ -9,16 +9,17 @@ class TmdbService {
   static const String _apiKey = "1fa5c2d59029fd1c438cc35713720604";
   static const String _baseURL = "https://api.themoviedb.org/3";
   static const String _idioma = "pt-BR";
+  // static -> atributos da classe e não do OBJ
+  // o endereço não vai ser diferente para cada objeto, e sim um único que pertence à classe
 
-  // método para buscar filme com base no texto
-
+  // método para buscar filme com base no texto (static) -> método que vai ser usado pela classe, não pelo obj
   static Future<List<Map<String, dynamic>>> searchMovies(String query) async {
     // converter String em URL
     final apiUrl = Uri.parse("$_baseURL/search/movie?api_key=$_apiKey&query=$query&language=$_idioma");
     //http.get
     final response = await http.get(apiUrl);
 
-    //se a rsesposta form ok ==200
+    //se a resposta form ok == 200
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       return List<Map<String, dynamic>>.from(data["results"]);

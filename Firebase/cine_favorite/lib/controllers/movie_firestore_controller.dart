@@ -27,23 +27,18 @@ class MovieFirestoreController {
         .doc(currentUser!.uid)
         .collection("favorite_movies")
         .snapshots()
-        .map(
-          (snapshot) =>
-              snapshot.docs.map((doc) => Movie.fromMap(doc.data())).toList(),
-        );
-    //retorna a coleção que estava em Json => conevertida para Obj de uma Lista de Filmes
+        .map((snapshot) => snapshot.docs.map((doc) => Movie.fromMap(doc.data())).toList());
+      //retorna a coleção que estava em Json => conevertida para Obj de uma Lista de Filmes
   }
 
   //path e path_provider (bibliotecas que permitem acesso as pastas do dispositivo)
   // adicionar um filme a lista de favoritos
   void addFavoriteMovie(Map<String, dynamic> movieData) async {
     //verificar se filme tem poster (imagem da capa)
-    if (movieData["poster_path"] == null)
-      return; //se o filme não tiver capa não continua
+    if (movieData["poster_path"] == null) return; //se o filme não tiver capa não continua
 
     //vou armazenar a capa do filme no dispositivo
-    final imageUrl =
-        "https://image.tmdb.org/t/p/w500${movieData["poster_path"]}";
+    final imageUrl = "https://image.tmdb.org/t/p/w500${movieData["poster_path"]}";
     final responseImg = await http.get(Uri.parse(imageUrl));
 
     //armazenar a imagem no diretótio do aplicativo
@@ -56,7 +51,7 @@ class MovieFirestoreController {
     final movie = Movie(
       id: movieData["id"],
       title: movieData["title"],
-      posterPath: file.toString(),
+      posterPath: file.path.toString(),
     );
 
     //adicionar o filme no firestore
@@ -66,5 +61,35 @@ class MovieFirestoreController {
         .collection("favorite_movies")
         .doc(movie.id.toString())
         .set(movie.toMap());
+  }
+
+  //delete
+  void removeFavoriteMovie(int movieId) async {
+    await _db
+        .collection("usuarios")
+        .doc(currentUser!.uid)
+        .collection("favorite_movies")
+        .doc(movieId.toString())
+        .delete();
+    //deleta o filme da lista de favoritos a partir do ID do Filme
+
+    //deletar a imagem do filme
+    final imagemPath = await getApplicationCacheDirectory();
+    final imagemFile = File("${imagemPath.path}/movieId.jpg");
+    try {
+      await imagemFile.delete();
+    } catch (e) {
+      print("Erro ao deletar imagem: $e");
+    }
+  }
+
+  // update (modificar nota)
+  void updtadeMovieRating(int movieId, double rating) async {
+    await _db
+        .collection("usuarios")
+        .doc(currentUser!.uid)
+        .collection("favorite_movies")
+        .doc(movieId.toString())
+        .update({"rating": rating});
   }
 }
