@@ -115,4 +115,4 @@ Determinar o caminho Percorrido pelo Ator para executar uma ação.
 
 ## Prototipagem 
 
-https://www.figma.com/design/HJ2FoDtjcsnrbyovirLcQV/CineFavorite---Prot%C3%B3tipo-M%C3%A9dia-Fidelidade?node-id=0-1&t=isx4SwtHXUK4nzhW-1
+https://www.figma.com/design/HJ2FoDtjcsnrbyovirLcQV/CineFavorite---Prot%C3%B3tipo-M%C3%A9dia-Fidelidade?node-id=0-1&t=fiDGOzpH8ukzw0dM-1
