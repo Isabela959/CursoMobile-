@@ -101,9 +101,29 @@ class _FavoriteViewState extends State<FavoriteView> {
                       child: Text(movie.title),
                     ),
                     // nota
+                    // estrelas
+                    // estrelas clicáveis
                     Padding(
                       padding: EdgeInsets.all(8),
-                      child: Text(movie.rating.toString()),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(5, (index) {
+                          final starIndex = index + 1; // estrelas vão de 1 até 5
+                          return GestureDetector(
+                            onTap: () {
+                              // salva no Firestore
+                              _movieFireStoreController.updtadeMovieRating(movie.id, starIndex.toDouble());
+                            },
+                            child: Icon(
+                              starIndex <= movie.rating
+                                  ? Icons.star
+                                  : Icons.star_border,
+                              color: Colors.amber,
+                              size: 24,
+                            ),
+                          );
+                        }),
+                      ),
                     ),
                   ],
                 ),
