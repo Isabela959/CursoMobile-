@@ -11,7 +11,15 @@ Construir um Aplicativo do Zero - O CineFavorite que permitirá criar uma conta 
 
 ## Levantamento de Requisitos
 - ### Funcionais
+    - Cadastro de Usuário
+    - Fazer Login e Logout
+    - Pesquisar Filmes e Séries por Nome
+    - Adicionar e Remover Filmes e Séries da Lista de Favoritos
+    - Visualizar a Lista de Favoritos
+    - Dar Nota à Filmes e Séries com Estrelas
+
 - ### Não Funcionais
+    - 
 
 ## Recursos do Projeto
 - Linguagem de Programação: Flutter/Dart
@@ -22,7 +30,7 @@ Construir um Aplicativo do Zero - O CineFavorite que permitirá criar uma conta 
 - VSCode: Codificação 
 
 ## Diagramas
-1. ### Classe;
+1. ### Classe
 Demonstrar o funcionamento das Entidades do Sistema
 - Usuário (User): Classe já modelada pelo FireBaseAuth
     - Atributos: email, senha, uid
@@ -104,6 +112,8 @@ Determinar o caminho Percorrido pelo Ator para executar uma ação.
 - Fluxo da Ação de Login
 
 ```mermaid
+
+graph TD
 
     A[Início] --> B{Tela de Login}
     B --> C[Inserir Email e Senha]
