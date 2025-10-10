@@ -1,4 +1,4 @@
-name: sa02_geo_cam
+name: exemplo_acelerometro
 description: "A new Flutter project."
 publish_to: 'none'
 version: 0.1.0
@@ -9,11 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  geolocator: ^14.0.2
-  http: ^1.5.0
-  image_picker: ^1.2.0
-  intl: ^0.20.2
-  path_provider: ^2.1.5
+  sensors_plus: ^7.0.0
 
 dev_dependencies:
   flutter_test:
