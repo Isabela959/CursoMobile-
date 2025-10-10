@@ -88,27 +88,22 @@ class _FavoriteViewState extends State<FavoriteView> {
                             _movieFireStoreController.removeFavoriteMovie(movie.id);
                           }
                         },
-                        // 👇 a imagem agora é a área "tocável"
                         child: Image.file(
                           File(movie.posterPath),
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    // título
                     Padding(
                       padding: EdgeInsets.all(8),
                       child: Text(movie.title),
                     ),
-                    // nota
-                    // estrelas
-                    // estrelas clicáveis
                     Padding(
                       padding: EdgeInsets.all(8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(5, (index) {
-                          final starIndex = index + 1; // estrelas vão de 1 até 5
+                          final starIndex = index + 1; 
                           return GestureDetector(
                             onTap: () {
                               // salva no Firestore

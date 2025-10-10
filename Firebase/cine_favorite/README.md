@@ -19,7 +19,10 @@ Construir um Aplicativo do Zero - O CineFavorite que permitirá criar uma conta 
     - Dar Nota à Filmes e Séries com Estrelas
 
 - ### Não Funcionais
-    - 
+    - Interface Intuitiva (simples e fácil de navegar)
+    - O usuário só tem acesso à sua própria Lista de Favoritos
+    - Login usa os padrões do Firebase Auth
+    - Toda a troca de dados com o Firebase deve ser criptografada (HTTPS)
 
 ## Recursos do Projeto
 - Linguagem de Programação: Flutter/Dart
