@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "41983473381",
+    "project_id": "somativa-geo-bio",
+    "storage_bucket": "somativa-geo-bio.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41983473381:android:e185cce23bc740a310c60c",
+        "android_client_info": {
+          "package_name": "com.example.somativa_geo_bio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS98Nyz62aTbcqgJONIXnYdPyCoEGFZZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
