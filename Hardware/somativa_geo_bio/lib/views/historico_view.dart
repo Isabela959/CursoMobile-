@@ -23,7 +23,6 @@ class _HistoricoViewState extends State<HistoricoView> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
-
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text("Nenhum ponto registrado ainda"));
           }

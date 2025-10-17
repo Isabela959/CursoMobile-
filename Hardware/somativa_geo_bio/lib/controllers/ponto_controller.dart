@@ -21,7 +21,7 @@ class PointController {
         .set(point.toMap());
   }
 
-  // remover ponto (opcional)
+  // remover ponto 
   Future<void> removePoint(String pointId) async {
     if (currentUser == null) return;
 

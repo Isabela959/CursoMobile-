@@ -16,7 +16,7 @@ class AuthController {
     required String nif,
     required String senha,
   }) async {
-    // email fictício só para FirebaseAuth
+    // email para FirebaseAuth
     final email = '$nif@empresa.com';
 
     UserCredential cred = await _auth.createUserWithEmailAndPassword(
@@ -41,7 +41,7 @@ class AuthController {
     await _auth.signInWithEmailAndPassword(email: email, password: senha);
   }
 
-  /// Autenticação via biometria
+  /// Autenticação por biometria
   Future<bool> autenticarBiometria() async {
     bool podeAutenticar = await _localAuth.canCheckBiometrics;
     if (!podeAutenticar) return false;

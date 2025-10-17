@@ -15,6 +15,8 @@ class Point {
     required this.dataHora,
   });
 
+  //métodos de conversão de obj <=> JSON
+  //toMap OBJ => Json
   Map<String, dynamic> toMap(){
     return {
       'id': id,
@@ -25,6 +27,7 @@ class Point {
     };
   }
 
+  //fromMap Json => OBJ
   factory Point.fromMap(Map<String, dynamic> map) {
     return Point(
       id: map['id'], 

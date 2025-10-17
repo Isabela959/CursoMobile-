@@ -11,6 +11,8 @@ class User {
     required this.email,
   });
 
+  //métodos de conversão de obj <=> JSON
+  //toMap OBJ => Json
   Map<String, dynamic> toMap(){
     return {
       'id': id,
@@ -20,6 +22,7 @@ class User {
     };
   }
 
+  //fromMap Json => OBJ
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
       id: map['id'], 
